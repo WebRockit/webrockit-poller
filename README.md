@@ -15,13 +15,15 @@ The final package is located under ./finalpkg/
 ### Command Line Options
 
 Usage: webrockit-poller.rb [options]
-    * -d, --debug                     Enable debug output
-    * -f, --format [STRING]           Output data and status as plain(text/tsv) or json (default: plain)
-    * -i, --ip [IP ADDRESS]           Override DNS or provide IP for request (default: use dns)
-    * -l, --ps-extra-opts [STRING]    Extra Phantomas Options (default: no options) [eg -l 'debug' -l 'proxy=localhost']
-    * -m, --metricdetail [STRING]     Level of data to output: minimal, standard, verbose  (default: standard)
-    * -p, --phantomas [PATH]          Path to Phantomas binary (default: /opt/phantomjs/collectoids/phantomas/bin/phantomas.js)
-    * -u, --url [STRING]              URL to query
+<pre>
+    -d, --debug                     Enable debug output
+    -f, --format [STRING]           Output data and status as plain(text/tsv) or json (default: plain)
+    -i, --ip [IP ADDRESS]           Override DNS or provide IP for request (default: use dns)
+    -l, --ps-extra-opts [STRING]    Extra Phantomas Options (default: no options) [eg -l 'debug' -l 'proxy=localhost']
+    -m, --metricdetail [STRING]     Level of data to output: minimal, standard, verbose  (default: standard)
+    -p, --phantomas [PATH]          Path to Phantomas binary (default: /opt/phantomjs/collectoids/phantomas/bin/phantomas.js)
+    -u, --url [STRING]              URL to query (mandatory option)
+</pre>
 
     
 
