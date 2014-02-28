@@ -1,3 +1,9 @@
+2014.02.27, Version 0.0.5 (Stable),
+* webrockit-poller: Added option --format, issue#10
+* webrockit-poller: Added option --metricdetail, issue#8
+* webrockit-poller: Cleaned up output, issue#9
+
+
 2014.01.28, Version 0.0.3 (Stable),
 * webrockit-poller: Pre-pend ghost call with sudo
 * webrockit-poller: Add sudoers file for sensu default user, /etc/sudoers.d/sensu
