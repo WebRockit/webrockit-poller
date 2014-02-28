@@ -86,7 +86,7 @@ then
     #rm -f ${buildtargetpath}/README.md
     rm -f ${buildtargetpath}/extra-build-commands.sh
     rm -f ${buildtargetpath}/fetch-binary.sh
-    rm -f ${buildtargetpath}/build-request.sh
+    rm -f ${buildtargetpath}/build-requires.sh
 else
     tar xvf ${SRCTYPE} --strip-components=1 -C ${buildtargetpath}
 fi
