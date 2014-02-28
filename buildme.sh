@@ -25,6 +25,8 @@ FINALPKGDROP=finalpkg
 # often  binpkg/*.tar.gz is sufficient here
 SRCTYPE=files
 
+URL="http://webrockit.io"
+
 # cheap verify if we're on an rpm or dpkg system
 if [ -e /etc/redhat-release ]
 then
@@ -84,12 +86,13 @@ then
     #rm -f ${buildtargetpath}/README.md
     rm -f ${buildtargetpath}/extra-build-commands.sh
     rm -f ${buildtargetpath}/fetch-binary.sh
+    rm -f ${buildtargetpath}/build-request.sh
 else
     tar xvf ${SRCTYPE} --strip-components=1 -C ${buildtargetpath}
 fi
 cd ${builddir}
 sh ${OLDPWD}/extra-build-commands.sh
-fpm -s dir -t ${PKGTYPE} -n ${PKGNAME} -v ${VERSION} --iteration ${ITERATION} -a ${PKGARCH} ./*
+fpm -s dir -t ${PKGTYPE} -n ${PKGNAME} -v ${VERSION} --iteration ${ITERATION} --url ${URL} -a ${PKGARCH} ./*
 mv ${PKGNAME}-${VERSION}-${ITERATION}.${PKGARCH}.${PKGTYPE} ${OLDPWD}/${FINALPKGDROP}
 cd ${OLDPWD}
 rm -rf ${builddir}
