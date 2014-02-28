@@ -1,3 +1,6 @@
+2014.02.27, Version 0.0.6 (Stable),
+* webrockit-poller: Added ghost binary to rpm
+
 2014.02.27, Version 0.0.5 (Stable),
 * webrockit-poller: Added option --format, issue#10
 * webrockit-poller: Added option --metricdetail, issue#8

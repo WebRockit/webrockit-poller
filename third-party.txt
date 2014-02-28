@@ -5,6 +5,6 @@ user's responsibility to ensure that they have met the licensing
 requirements of PhantomJS and the relevant license of the Third Party
 Software they are using.
 
-??App - ??HomeURL
-License: ??
-Reference: ??License URL
+Ghost - https://github.com/bjeanes/ghost
+License: MIT
+Reference: https://github.com/bjeanes/ghost/blob/master/LICENSE

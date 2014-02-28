@@ -9,6 +9,7 @@ require 'timeout'
 options = {}
 options[:phantomas_bin] = "/opt/phantomjs/collectoids/phantomas/bin/phantomas.js"
 options[:phantomas_opts] = "--format=json "
+options[:ghost_bin] = "/opt/phantomjs/collectoids/webrockit-poller/ghost"
 options[:phantomas_extra_ops] = [ ]
 options[:critical] = 30
 options[:debug] = false
@@ -37,7 +38,7 @@ OptionParser.new do |opts|
    opts.on("-d", "--debug", "Enable debug output") do
       options[:debug] = true
    end
-   opts.on("-f", "--format [json,plain]", "Output data and status as plain(text/tsv) or json") do |f|
+   opts.on("-f", "--format json,plain", "Output data and status as plain(text/tsv) or json (default: plain)") do |f|
       begin
          if f.to_s.empty?
             raise
@@ -47,7 +48,7 @@ OptionParser.new do |opts|
       end
       options[:format] = f
    end
-   opts.on("-i", "--ip [IP ADDRESS]", "Override DNS or provide IP for request (default: use dns)") do |i|
+   opts.on("-i", "--ip x.x.x.x", "Override DNS or provide IP for request (default: use dns)") do |i|
       begin
          if i =~ /\A(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\Z/
             options[:ip_address] = i
@@ -61,7 +62,7 @@ OptionParser.new do |opts|
    opts.on("-l", "--ps-extra-opts [STRING]", "Extra Phantomas Options (default: no options) [eg -l 'debug' -l 'proxy=localhost']") do |l|
       options[:phantomas_extra_ops] << "--" + l.to_s
    end
-   opts.on("-m", "--metricdetail ", "Level of data to output: minimal, standard, verbose") do |m|
+   opts.on("-m", "--metricdetail minimal,standard,verbose", "Level of data to output (default: standard)") do |m|
       begin
          if m.to_s.empty?
             raise
@@ -92,8 +93,8 @@ unless File.executable?(options[:phantomas_bin])
 end
 if !options[:ip_address].to_s.empty?
    cmd = Array.new
-   cmd << "sudo /usr/local/bin/ghost modify "+options[:domain]+" "+options[:ip_address]
-   cmd << "2> /dev/null"
+   cmd << "sudo "+options[:ghost_bin]+" modify "+options[:domain]+" "+options[:ip_address]
+   cmd << "2> /dev/null (default: standard)"
    warn "Ghost cmd is: " + cmd.join(" ") if options[:debug]
    @pipe = IO.popen(cmd.join(" "))
    output = @pipe.read
