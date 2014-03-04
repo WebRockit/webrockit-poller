@@ -94,7 +94,7 @@ end
 if !options[:ip_address].to_s.empty?
    cmd = Array.new
    cmd << "sudo "+options[:ghost_bin]+" modify "+options[:domain]+" "+options[:ip_address]
-   cmd << "2> /dev/null (default: standard)"
+   cmd << "2> /dev/null"
    warn "Ghost cmd is: " + cmd.join(" ") if options[:debug]
    @pipe = IO.popen(cmd.join(" "))
    output = @pipe.read
