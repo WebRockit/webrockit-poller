@@ -1,3 +1,6 @@
+2014.02.27, Version 0.0.7 (Stable),
+* webrockit-poller: Fixed sudo command when calling ghost, typo
+
 2014.02.27, Version 0.0.6 (Stable),
 * webrockit-poller: Added ghost binary to rpm
 
