@@ -1,3 +1,18 @@
+2014.03.07, Version 0.0.8 (Stable),
+* webrockit-poller: Added explicit rvm ruby version to sudoers path because: ruby is insane
+
+2014.02.27, Version 0.0.7 (Stable),
+* webrockit-poller: Fixed sudo command when calling ghost, typo
+
+2014.02.27, Version 0.0.6 (Stable),
+* webrockit-poller: Added ghost binary to rpm
+
+2014.02.27, Version 0.0.5 (Stable),
+* webrockit-poller: Added option --format, issue#10
+* webrockit-poller: Added option --metricdetail, issue#8
+* webrockit-poller: Cleaned up output, issue#9
+
+
 2014.01.28, Version 0.0.3 (Stable),
 * webrockit-poller: Pre-pend ghost call with sudo
 * webrockit-poller: Add sudoers file for sensu default user, /etc/sudoers.d/sensu

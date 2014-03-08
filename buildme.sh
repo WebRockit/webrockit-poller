@@ -10,7 +10,7 @@
 ########################################### edit below to suit your needs
 
 VERSION=0.0
-ITERATION=3
+ITERATION=8
 # this is the target system architecture for the pacakge
 PKGARCH=noarch
 # this is the package name
@@ -24,6 +24,8 @@ FINALPKGDROP=finalpkg
 # this should either be "files" to create an package out of this entire repo, or relative path+name of a files tarball
 # often  binpkg/*.tar.gz is sufficient here
 SRCTYPE=files
+
+URL="http://webrockit.io"
 
 # cheap verify if we're on an rpm or dpkg system
 if [ -e /etc/redhat-release ]
@@ -84,12 +86,13 @@ then
     #rm -f ${buildtargetpath}/README.md
     rm -f ${buildtargetpath}/extra-build-commands.sh
     rm -f ${buildtargetpath}/fetch-binary.sh
+    rm -f ${buildtargetpath}/build-requires.sh
 else
     tar xvf ${SRCTYPE} --strip-components=1 -C ${buildtargetpath}
 fi
 cd ${builddir}
 sh ${OLDPWD}/extra-build-commands.sh
-fpm -s dir -t ${PKGTYPE} -n ${PKGNAME} -v ${VERSION} --iteration ${ITERATION} -a ${PKGARCH} ./*
+fpm -s dir -t ${PKGTYPE} -n ${PKGNAME} -v ${VERSION} --iteration ${ITERATION} --url ${URL} -a ${PKGARCH} ./*
 mv ${PKGNAME}-${VERSION}-${ITERATION}.${PKGARCH}.${PKGTYPE} ${OLDPWD}/${FINALPKGDROP}
 cd ${OLDPWD}
 rm -rf ${builddir}
