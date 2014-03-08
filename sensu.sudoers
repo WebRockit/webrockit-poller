@@ -1,4 +1,4 @@
 Defaults:sensu !requiretty
-Defaults:sensu secure_path = /opt/phantomjs/bin:/opt/phantomjs/collectoids:/opt/nodejs/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+Defaults:sensu secure_path = /usr/local/rvm/rubies/ruby-2.0.0-p451/bin:/opt/phantomjs/bin:/opt/phantomjs/collectoids:/opt/nodejs/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 sensu ALL = NOPASSWD: /opt/phantomjs/collectoids/webrockit-poller/ghost

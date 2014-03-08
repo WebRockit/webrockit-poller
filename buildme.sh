@@ -10,7 +10,7 @@
 ########################################### edit below to suit your needs
 
 VERSION=0.0
-ITERATION=7
+ITERATION=8
 # this is the target system architecture for the pacakge
 PKGARCH=noarch
 # this is the package name
