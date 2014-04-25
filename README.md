@@ -17,6 +17,7 @@ The final package is located under ./finalpkg/
 Usage: webrockit-poller.rb [options]
 <pre>
     -d, --debug                     Enable debug output
+    -e, --external [none,limit]     Limit requests explicitly to assets for the url domain (none) or to *.url (limit) (default: no limits applied)
     -f, --format [STRING]           Output data and status as plain(text/tsv) or json (default: plain)
     -i, --ip [IP ADDRESS]           Override DNS or provide IP for request (default: use dns)
     -l, --ps-extra-opts [STRING]    Extra Phantomas Options (default: no options) [eg -l 'debug' -l 'proxy=localhost']

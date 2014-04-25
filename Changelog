@@ -1,3 +1,7 @@
+2014.04.25, Version 0.0.9 (Stable),
+* webrockit-poller: Changed ruby dependency to just use the sensu client omnibus
+* webrockit-poller: Added --external option to limit assets fetched via 3rd party domains
+
 2014.03.07, Version 0.0.8 (Stable),
 * webrockit-poller: Added explicit rvm ruby version to sudoers path because: ruby is insane
 

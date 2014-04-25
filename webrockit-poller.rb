@@ -11,7 +11,9 @@ options[:phantomas_bin] = "/opt/phantomjs/collectoids/phantomas/bin/phantomas.js
 options[:phantomas_opts] = "--format=json "
 options[:ghost_bin] = "/opt/phantomjs/collectoids/webrockit-poller/ghost"
 options[:phantomas_extra_ops] = [ ]
+options[:phantomas_external_opts] = ""
 options[:critical] = 30
+options[:limitexternal] = ""
 options[:debug] = false
 options[:jsonreports] = false
 options[:format] = "plain"
@@ -37,6 +39,16 @@ OptionParser.new do |opts|
 
    opts.on("-d", "--debug", "Enable debug output") do
       options[:debug] = true
+   end
+   opts.on("-e", "--external none,limit", "Define external asset fetching") do |e|
+      begin
+         if e.to_s.empty?
+            raise
+         end
+      rescue
+         bail("{\"pollstatus\":1,\"errormsg\":\"No exteral asset parameter provided, please use --external [none,limit]\"}",options[:limitexternal])
+      end
+      options[:limitexternal] = e
    end
    opts.on("-f", "--format json,plain", "Output data and status as plain(text/tsv) or json (default: plain)") do |f|
       begin
@@ -93,7 +105,7 @@ unless File.executable?(options[:phantomas_bin])
 end
 if !options[:ip_address].to_s.empty?
    cmd = Array.new
-   cmd << "sudo "+options[:ghost_bin]+" modify "+options[:domain]+" "+options[:ip_address]
+   cmd << "sudo env GEM_PATH=/opt/sensu/embedded/lib/ruby/gems/2.0.0 "+options[:ghost_bin]+" modify "+options[:domain]+" "+options[:ip_address]
    cmd << "2> /dev/null"
    warn "Ghost cmd is: " + cmd.join(" ") if options[:debug]
    @pipe = IO.popen(cmd.join(" "))
@@ -108,6 +120,15 @@ if options[:format].to_s.empty?
    bail("{\"pollstatus\":1,\"errormsg\":\"Missing or bad format provided, please use --format [plain,json]\"}",options[:format])
 end
 
+#  --no-externals block requests to 3rd party domains
+#  --allow-domain=[domain],[domain] allow requests to given domain(s) - aka whitelist
+#  --block-domain=[domain],[domain] disallow requests to given domain(s) - aka blacklist
+if options[:limitexternal].to_s == "none"
+  options[:phantomas_external_opts] = "--no-externals"
+elsif options[:limitexternal].to_s == "limit"
+  options[:phantomas_external_opts] = "--no-externals --allow-domain ."+options[:domain]
+end
+
 website_url = URI(options[:url])
 website_load_time = 0.0
 
@@ -120,6 +141,7 @@ begin
       cmd << options[:phantomas_bin]
       cmd << options[:phantomas_opts]
       cmd << options[:phantomas_extra_ops]
+      cmd << options[:phantomas_external_opts]
       cmd << " --url " + website_url.to_s
       cmd << "2> /dev/null"
       warn "Phantomas cmd is: " + cmd.join(" ") if options[:debug]
