@@ -2,4 +2,4 @@ Defaults:sensu !requiretty
 Defaults:sensu secure_path = /opt/sensu/embedded/bin:/opt/phantomjs/bin:/opt/phantomjs/collectoids:/opt/nodejs/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 Defaults:sensu env_keep += GEM_HOME
 
-sensu ALL = NOPASSWD: /opt/phantomjs/collectoids/webrockit-poller/ghost
+sensu ALL = NOPASSWD: /bin/env,/opt/phantomjs/collectoids/webrockit-poller/ghost
